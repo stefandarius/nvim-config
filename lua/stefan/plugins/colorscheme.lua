@@ -10,7 +10,9 @@ return {
 			integrations = {
 				cmp = true,
 				gitsigns = true,
-				telescope = true,
+				telescope = {
+					enabled = true,
+				},
 				which_key = true,
 				fidget = true,
 				indent_blankline = true,
