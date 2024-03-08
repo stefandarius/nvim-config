@@ -1,4 +1,4 @@
-return {
+--[[ return {
 	"catppuccin/nvim",
 	lazy = false,
 	name = "catppuccin",
@@ -24,5 +24,22 @@ return {
 			},
 		})
 		vim.cmd.colorscheme("catppuccin")
+	end,
+} ]]
+return {
+	"rose-pine/neovim",
+	lazy = false,
+	name = "rose-pine",
+	priority = 1000,
+	config = function()
+		require("rose-pine").setup({
+			variant = "main",
+			styles = {
+				italic = true,
+				bold = true,
+				transparency = true,
+			},
+		})
+		vim.cmd("colorscheme rose-pine")
 	end,
 }
