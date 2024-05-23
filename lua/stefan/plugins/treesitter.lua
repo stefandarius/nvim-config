@@ -39,6 +39,8 @@ return {
 					"python",
 					"c",
 					"cpp",
+					"java",
+					"haskell",
 				},
 			})
 		end,

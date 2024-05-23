@@ -6,10 +6,13 @@ opt.number = true -- shows absolute line number on cursor line (when relative nu
 opt.ruler = false
 
 -- tabs & indentation
-opt.tabstop = 4 -- 2 spaces for tabs (prettier default)
-opt.shiftwidth = 4 -- 2 spaces for indent width
+opt.tabstop = 4 -- 4 spaces for tabs (prettier default)
+opt.shiftwidth = 4 -- 4 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.smartindent = true -- copy indent from current line when starting new one
+
+opt.list = true -- show whitespace characters
+opt.listchars = { tab = "» ", trail = "·" } -- show special characters
 
 -- line wrapping
 opt.wrap = true -- wrap lines
@@ -28,7 +31,7 @@ opt.smartcase = true -- if you include mixed case in your search, assumes you wa
 opt.termguicolors = true
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
-opt.showmode = false -- don't show mode (insert, replace, etc.) on the last line
+-- opt.showmode = false -- don't show mode (insert, replace, etc.) on the last line
 
 -- backspace
 -- opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
@@ -44,3 +47,15 @@ opt.splitbelow = true -- split horizontal window to the bottom
 opt.swapfile = false
 
 opt.scrolloff = 8 -- keep 8 lines above and below cursor
+
+vim.wo.fillchars = "eob: " -- remove ~ from end of buffer
+
+opt.showtabline = 0 -- always show tabs
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})

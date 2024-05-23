@@ -43,15 +43,16 @@ return {
 			opts.desc = "Show buffer diagnostics"
 			keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
 
-			opts.desc = "Show line diagnostics"
-			keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
-
-			opts.desc = "Show documentation for what is under cursor"
-			keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
+			opts.desc = "Show inlay hints"
+			keymap.set("n", "<leader>ih", function()
+				---@diagnostic disable-next-line: missing-parameter
+				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+			end, opts) -- show inlay hints
 		end
 
 		-- used to enable autocompletion (assign to every lsp server config)
 		local capabilities = cmp_nvim_lsp.default_capabilities()
+		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 		-- Change the Diagnostic symbols in the sign column (gutter)
 		-- (not in youtube nvim video)
@@ -71,18 +72,81 @@ return {
 		lspconfig["tsserver"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+			settings = {
+				tsserver = {
+					usePlaceholders = true,
+				},
+			},
+		})
+
+		lspconfig["eslint"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
+		lspconfig["ltex"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			settings = {
+				ltex = {
+					dictionary = {
+						["en-US"] = { "Genezio" },
+					},
+					additionalRules = {
+						languageModel = "~/ngrams",
+					},
+				},
+			},
 		})
 
 		-- configure go server with plugin
 		lspconfig["gopls"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+			settings = {
+				gopls = {
+					usePlaceholders = true,
+				},
+			},
+		})
+
+		lspconfig["hls"].setup({
+			capabilities = capabilities,
+			on_attach = function(client, bufnr)
+				on_attach(client, bufnr)
+				if client.supports_method("textDocument/formatting") then
+					vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						group = augroup,
+						buffer = bufnr,
+						callback = function()
+							vim.lsp.buf.format({
+								bufnr = bufnr,
+							})
+						end,
+					})
+				end
+			end,
 		})
 
 		-- configure rust server with plugin
 		lspconfig["rust_analyzer"].setup({
 			capabilities = capabilities,
-			on_attach = on_attach,
+			on_attach = function(client, bufnr)
+				on_attach(client, bufnr)
+				if client.supports_method("textDocument/formatting") then
+					vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						group = augroup,
+						buffer = bufnr,
+						callback = function()
+							vim.lsp.buf.format({
+								bufnr = bufnr,
+							})
+						end,
+					})
+				end
+			end,
 		})
 
 		lspconfig["clangd"].setup({

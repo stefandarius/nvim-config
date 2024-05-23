@@ -33,6 +33,9 @@ return {
 				"gopls",
 				"rust_analyzer",
 				"clangd",
+				"eslint",
+				"ltex",
+				"hls",
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
