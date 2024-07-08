@@ -55,6 +55,10 @@ return {
 		require("kanagawa").setup({
 			transparent = true,
 			theme = "wave",
+			background = {
+				dark = "wave",
+				light = "lotus",
+			},
 			colors = {
 				pallete = {},
 				theme = {
