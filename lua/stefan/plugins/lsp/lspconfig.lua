@@ -79,6 +79,12 @@ return {
 			},
 		})
 
+		lspconfig["elixirls"].setup({
+			cmd = { "/home/stefan/.local/share/nvim/mason/bin/elixir-ls" },
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
 		lspconfig["eslint"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
@@ -90,7 +96,7 @@ return {
 			settings = {
 				ltex = {
 					dictionary = {
-						["en-US"] = { "Genezio" },
+						["en-US"] = { "Genezio", "genezio" },
 					},
 					additionalRules = {
 						languageModel = "~/ngrams",

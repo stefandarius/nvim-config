@@ -4,7 +4,7 @@ return {
 	config = function()
 		local opts = {
 			options = {
-				theme = "kanagawa",
+				theme = "rose-pine",
 				section_separators = "",
 				component_separators = "",
 				always_divide_middle = false,

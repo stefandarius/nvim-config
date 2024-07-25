@@ -41,6 +41,8 @@ return {
 					"cpp",
 					"java",
 					"haskell",
+					"elixir",
+					"heex",
 				},
 			})
 		end,
