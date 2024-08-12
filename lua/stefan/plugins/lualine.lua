@@ -1,10 +1,18 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+	},
 	config = function()
+		local auto_theme = require("lualine.themes.auto")
+		auto_theme.normal.c.bg = "#00000000"
+		auto_theme.insert.c.bg = "#00000000"
+		auto_theme.visual.c.bg = "#00000000"
+		auto_theme.replace.c.bg = "#00000000"
+		auto_theme.command.c.bg = "#00000000"
 		local opts = {
 			options = {
-				theme = "rose-pine",
+				theme = auto_theme,
 				section_separators = "",
 				component_separators = "",
 				always_divide_middle = false,

@@ -32,6 +32,10 @@ opt.termguicolors = true
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 -- opt.showmode = false -- don't show mode (insert, replace, etc.) on the last line
+-- Access colors present in 256 colorspace
+vim.g.base16_colorspace = 256
+-- Make vim background transparent to work alongside transparent terminal backgrounds
+vim.g.base16_background_transparent = 1
 
 -- backspace
 -- opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
