@@ -99,7 +99,7 @@ return {
 						["en-US"] = { "Genezio", "genezio" },
 					},
 					additionalRules = {
-						languageModel = "~/ngrams",
+						languageModel = "/home/stefan/ngrams/",
 					},
 				},
 			},
