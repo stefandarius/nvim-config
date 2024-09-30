@@ -44,6 +44,7 @@ return {
 				formatting.gofmt,
 				formatting.goimports_reviser,
 				diagnostics.pylint,
+				diagnostics.revive,
 			},
 			-- configure format on save
 			on_attach = function(current_client, bufnr)
