@@ -6,10 +6,10 @@ return {
 	config = function()
 		local auto_theme = require("lualine.themes.auto")
 		auto_theme.normal.c.bg = "#00000000"
-		auto_theme.insert.c.bg = "#00000000"
-		auto_theme.visual.c.bg = "#00000000"
-		auto_theme.replace.c.bg = "#00000000"
-		auto_theme.command.c.bg = "#00000000"
+		-- auto_theme.insert.c.bg = "#00000000"
+		-- auto_theme.visual.c.bg = "#00000000"
+		-- auto_theme.replace.c.bg = "#00000000"
+		-- auto_theme.command.c.bg = "#00000000"
 		local opts = {
 			options = {
 				theme = auto_theme,

@@ -83,14 +83,50 @@
 -- 	end,
 -- }
 return {
-	"thimc/gruber-darker.nvim",
+	"rebelot/kanagawa.nvim",
+	lazy = false,
+	name = "kanagawa",
+	priority = 1000,
 	config = function()
-		require("gruber-darker").setup({
-			-- OPTIONAL
-			transparent = true, -- removes the background
-			-- underline = false, -- disables underline fonts
-			-- bold = false, -- disables bold fonts
+		require("kanagawa").setup({
+			transparent = true,
+			theme = "wave",
+			background = {
+				dark = "wave",
+				light = "lotus",
+			},
+			colors = {
+				pallete = {},
+				theme = {
+					wave = {},
+					lotus = {},
+					dragon = {},
+					all = {
+						ui = {
+							float = {
+								bg = "none",
+							},
+							bg_gutter = "none",
+						},
+					},
+				},
+			},
 		})
-		vim.cmd.colorscheme("gruber-darker")
+		vim.cmd("colorscheme kanagawa")
+		vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#6e6a86" })
+		vim.api.nvim_set_hl(0, "LineNr", { fg = "white" })
+		vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#6e6a86" })
 	end,
 }
+-- return {
+-- 	"thimc/gruber-darker.nvim",
+-- 	config = function()
+-- 		require("gruber-darker").setup({
+-- 			-- OPTIONAL
+-- 			transparent = true, -- removes the background
+-- 			-- underline = false, -- disables underline fonts
+-- 			-- bold = false, -- disables bold fonts
+-- 		})
+-- 		vim.cmd.colorscheme("gruber-darker")
+-- 	end,
+-- }
