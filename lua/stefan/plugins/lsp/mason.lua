@@ -34,7 +34,7 @@ return {
 				"rust_analyzer",
 				"clangd",
 				"eslint",
-				"ltex",
+				-- "ltex",
 				"hls",
 				"elixirls",
 			},

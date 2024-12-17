@@ -35,16 +35,16 @@ return {
 			keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
 
 			opts.desc = "See available code actions"
-			keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
+			keymap.set({ "n", "v" }, "gca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
 
 			opts.desc = "Smart rename"
-			keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
+			keymap.set("n", "grn", vim.lsp.buf.rename, opts) -- smart rename
 
 			opts.desc = "Show buffer diagnostics"
 			keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
 
 			opts.desc = "Show inlay hints"
-			keymap.set("n", "<leader>ih", function()
+			keymap.set("n", "gih", function()
 				---@diagnostic disable-next-line: missing-parameter
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 			end, opts) -- show inlay hints
@@ -90,20 +90,20 @@ return {
 			on_attach = on_attach,
 		})
 
-		lspconfig["ltex"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = {
-				ltex = {
-					dictionary = {
-						["en-US"] = { "Genezio", "genezio" },
-					},
-					additionalRules = {
-						languageModel = "/home/stefan/ngrams/",
-					},
-				},
-			},
-		})
+		-- lspconfig["ltex"].setup({
+		-- 	capabilities = capabilities,
+		-- 	on_attach = on_attach,
+		-- 	settings = {
+		-- 		ltex = {
+		-- 			dictionary = {
+		-- 				["en-US"] = { "Genezio", "genezio" },
+		-- 			},
+		-- 			additionalRules = {
+		-- 				languageModel = "/home/stefan/ngrams/",
+		-- 			},
+		-- 		},
+		-- 	},
+		-- })
 
 		-- configure go server with plugin
 		lspconfig["gopls"].setup({
