@@ -54,7 +54,7 @@ opt.scrolloff = 8 -- keep 8 lines above and below cursor
 
 vim.wo.fillchars = "eob: " -- remove ~ from end of buffer
 
-opt.showtabline = 0 -- always show tabs
+opt.showtabline = 1
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",

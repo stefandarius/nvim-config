@@ -16,3 +16,15 @@ keymap.set("x", "<leader>p", [["_dP]])
 
 keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 keymap.set("n", "<esc>", ":noh<CR>")
+
+keymap.set({ "i", "s" }, "<C-j>", function()
+	if vim.snippet.active({ direction = -1 }) then
+		vim.snippet.jump(-1)
+	end
+end)
+
+keymap.set({ "i", "s" }, "<C-k>", function()
+	if vim.snippet.active({ direction = 1 }) then
+		vim.snippet.jump(1)
+	end
+end)
