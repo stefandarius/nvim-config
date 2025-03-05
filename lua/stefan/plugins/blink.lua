@@ -21,6 +21,8 @@ return {
 			preset = "default",
 
 			["<CR>"] = { "select_and_accept", "fallback" },
+			["<C-j>"] = { "snippet_backward", "fallback" },
+			["<C-k>"] = { "snippet_forward", "fallback" },
 		},
 
 		signature = { enabled = true },

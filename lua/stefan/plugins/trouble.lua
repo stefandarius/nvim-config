@@ -3,6 +3,17 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	opts = {
 		focus = true,
+		pinned = true,
+		win = {
+			type = "split",
+			size = 20,
+		},
+		preview = {
+			type = "split",
+			relative = "win",
+			position = "right",
+			size = 0.5,
+		},
 	},
 	cmd = "Trouble",
 	keys = {

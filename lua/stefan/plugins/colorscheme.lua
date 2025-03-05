@@ -50,62 +50,62 @@
 -- 		vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#6e6a86" })
 -- 	end,
 -- }
-return {
-	"rebelot/kanagawa.nvim",
-	lazy = false,
-	name = "kanagawa",
-	priority = 1000,
-	config = function()
-		require("kanagawa").setup({
-			transparent = true,
-			theme = "dragon",
-			background = {
-				dark = "dragon",
-				light = "lotus",
-			},
-			overrides = function(colors)
-				local theme = colors.theme
-				local makeDiagnosticColor = function(color)
-					local c = require("kanagawa.lib.color")
-					return { fg = color, bg = c(color):blend(theme.ui.bg, 0.95):to_hex() }
-				end
-				return {
-					-- Diagnostics
-					DiagnosticVirtualTextHint = makeDiagnosticColor(theme.diag.hint),
-					DiagnosticVirtualTextInfo = makeDiagnosticColor(theme.diag.info),
-					DiagnosticVirtualTextWarn = makeDiagnosticColor(theme.diag.warning),
-					DiagnosticVirtualTextError = makeDiagnosticColor(theme.diag.error),
-
-					-- Popup menu
-					Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1, blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
-					PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
-					PmenuSbar = { bg = theme.ui.bg_m1 },
-					PmenuThumb = { bg = theme.ui.bg_p2 },
-				}
-			end,
-			colors = {
-				pallete = {},
-				theme = {
-					wave = {},
-					lotus = {},
-					dragon = {},
-					all = {
-						ui = {
-							float = {
-								bg = "none",
-							},
-							bg_gutter = "none",
-						},
-					},
-				},
-			},
-		})
-		vim.cmd("colorscheme kanagawa")
-		vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#6e6a86" })
-		vim.api.nvim_set_hl(0, "LineNr", { fg = "white" })
-		vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#6e6a86" })
-	end,
-}
+-- return {
+-- 	"rebelot/kanagawa.nvim",
+-- 	lazy = false,
+-- 	name = "kanagawa",
+-- 	priority = 1000,
+-- 	config = function()
+-- 		require("kanagawa").setup({
+-- 			transparent = true,
+-- 			theme = "dragon",
+-- 			background = {
+-- 				dark = "dragon",
+-- 				light = "lotus",
+-- 			},
+-- 			overrides = function(colors)
+-- 				local theme = colors.theme
+-- 				local makeDiagnosticColor = function(color)
+-- 					local c = require("kanagawa.lib.color")
+-- 					return { fg = color, bg = c(color):blend(theme.ui.bg, 0.95):to_hex() }
+-- 				end
+-- 				return {
+-- 					-- Diagnostics
+-- 					DiagnosticVirtualTextHint = makeDiagnosticColor(theme.diag.hint),
+-- 					DiagnosticVirtualTextInfo = makeDiagnosticColor(theme.diag.info),
+-- 					DiagnosticVirtualTextWarn = makeDiagnosticColor(theme.diag.warning),
+-- 					DiagnosticVirtualTextError = makeDiagnosticColor(theme.diag.error),
+--
+-- 					-- Popup menu
+-- 					Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1, blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
+-- 					PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+-- 					PmenuSbar = { bg = theme.ui.bg_m1 },
+-- 					PmenuThumb = { bg = theme.ui.bg_p2 },
+-- 				}
+-- 			end,
+-- 			colors = {
+-- 				pallete = {},
+-- 				theme = {
+-- 					wave = {},
+-- 					lotus = {},
+-- 					dragon = {},
+-- 					all = {
+-- 						ui = {
+-- 							float = {
+-- 								bg = "none",
+-- 							},
+-- 							bg_gutter = "none",
+-- 						},
+-- 					},
+-- 				},
+-- 			},
+-- 		})
+-- 		vim.cmd("colorscheme kanagawa")
+-- 		vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#6e6a86" })
+-- 		vim.api.nvim_set_hl(0, "LineNr", { fg = "white" })
+-- 		vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#6e6a86" })
+-- 	end,
+-- }
 -- return {
 -- 	"thimc/gruber-darker.nvim",
 -- 	config = function()
@@ -118,3 +118,17 @@ return {
 -- 		vim.cmd.colorscheme("gruber-darker")
 -- 	end,
 -- }
+return {
+	"ellisonleao/gruvbox.nvim",
+	priority = 1000,
+	config = function()
+		require("gruvbox").setup({
+			transparent_mode = true,
+		})
+		vim.cmd("colorscheme gruvbox")
+		vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#6e6a86" })
+		vim.api.nvim_set_hl(0, "LineNr", { fg = "white" })
+		vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#6e6a86" })
+	end,
+	opts = ...,
+}

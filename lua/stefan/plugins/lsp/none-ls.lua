@@ -31,6 +31,9 @@ return {
 		-- to setup format on save
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+		local venv_path =
+			'import sys; sys.path.append("/usr/lib/python3.11/site-packages"); import pylint_venv; pylint_venv.inithook(force_venv_activation=True, quiet=True)'
+
 		-- configure null_ls
 		null_ls.setup({
 			-- add package.json as identifier for root (for typescript monorepos)
@@ -43,7 +46,9 @@ return {
 				formatting.black,
 				formatting.gofmt,
 				formatting.goimports_reviser,
-				diagnostics.pylint,
+				diagnostics.pylint.with({
+					extra_args = { "--init-hook", venv_path },
+				}),
 				diagnostics.revive,
 			},
 			-- configure format on save

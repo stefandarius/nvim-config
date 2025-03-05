@@ -47,9 +47,26 @@ return {
 			end, opts) -- show inlay hints
 		end
 
+		-- borders on hover
+		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+			border = "single",
+		})
+
 		-- used to enable autocompletion (assign to every lsp server config)
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+		vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+			virtual_text = {
+				prefix = "●",
+				spacing = 1,
+			},
+			signs = true,
+			underline = true,
+
+			-- set this to true if you want diagnostics to show in insert mode
+			update_in_insert = false,
+		})
 
 		-- Change the Diagnostic symbols in the sign column (gutter)
 		-- (not in youtube nvim video)
@@ -87,20 +104,20 @@ return {
 			on_attach = on_attach,
 		})
 
-		-- lspconfig["ltex"].setup({
-		-- 	capabilities = capabilities,
-		-- 	on_attach = on_attach,
-		-- 	settings = {
-		-- 		ltex = {
-		-- 			dictionary = {
-		-- 				["en-US"] = { "Genezio", "genezio" },
-		-- 			},
-		-- 			additionalRules = {
-		-- 				languageModel = "/home/stefan/ngrams/",
-		-- 			},
-		-- 		},
-		-- 	},
-		-- })
+		lspconfig["ltex"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			settings = {
+				ltex = {
+					dictionary = {
+						["en-US"] = { "Genezio", "genezio" },
+					},
+					additionalRules = {
+						languageModel = "/home/stefan/ngrams/",
+					},
+				},
+			},
+		})
 
 		-- configure go server with plugin
 		lspconfig["gopls"].setup({
@@ -171,9 +188,19 @@ return {
 		})
 
 		-- configure python server
+		local python_root_files = {
+			"WORKSPACE", -- added for Bazel; items below are from default config
+			"pyproject.toml",
+			"setup.py",
+			"setup.cfg",
+			"requirements.txt",
+			"Pipfile",
+			"pyrightconfig.json",
+		}
 		lspconfig["pyright"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+			root_dir = lspconfig.util.root_pattern(python_root_files),
 		})
 
 		-- configure lua server (with special settings)
