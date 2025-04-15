@@ -47,34 +47,44 @@ return {
 			end, opts) -- show inlay hints
 		end
 
-		-- borders on hover
-		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-			border = "single",
-		})
-
 		-- used to enable autocompletion (assign to every lsp server config)
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-		vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+		-- Change the Diagnostic symbols in the sign column (gutter)
+		-- (not in youtube nvim video)
+		local signs = {
+			text = {
+				[vim.diagnostic.severity.ERROR] = " ",
+				[vim.diagnostic.severity.WARN] = " ",
+				[vim.diagnostic.severity.INFO] = " ",
+				[vim.diagnostic.severity.HINT] = "󰠠 ",
+			},
+			texthl = {
+				[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+				[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+				[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+				[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+			},
+			numhl = {
+				[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+				[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+				[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+				[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+			},
+		}
+		vim.diagnostic.config({
 			virtual_text = {
 				prefix = "●",
 				spacing = 1,
 			},
-			signs = true,
+			virtual_lines = {
+				current_line = true,
+			},
+			signs = signs,
 			underline = true,
-
-			-- set this to true if you want diagnostics to show in insert mode
 			update_in_insert = false,
 		})
-
-		-- Change the Diagnostic symbols in the sign column (gutter)
-		-- (not in youtube nvim video)
-		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		end
 
 		-- configure html server
 		lspconfig["html"].setup({
