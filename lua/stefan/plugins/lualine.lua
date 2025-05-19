@@ -4,12 +4,13 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 	config = function()
+		local lualine = require("lualine")
 		local auto_theme = require("lualine.themes.auto")
-		auto_theme.normal.c.bg = "#00000000"
-		auto_theme.insert.c.bg = "#00000000"
-		auto_theme.visual.c.bg = "#00000000"
-		auto_theme.replace.c.bg = "#00000000"
-		auto_theme.command.c.bg = "#00000000"
+		auto_theme.normal.c.bg = "NONE"
+		auto_theme.insert.c.bg = "NONE"
+		auto_theme.visual.c.bg = "NONE"
+		auto_theme.replace.c.bg = "NONE"
+		auto_theme.command.c.bg = "NONE"
 		auto_theme.command.c.fg = auto_theme.insert.c.fg
 		auto_theme.visual.c.fg = auto_theme.insert.c.fg
 		local opts = {
@@ -42,6 +43,6 @@ return {
 			},
 			extensions = { "trouble", "fugitive", "lazy", "mason" },
 		}
-		require("lualine").setup(opts)
+		lualine.setup(opts)
 	end,
 }

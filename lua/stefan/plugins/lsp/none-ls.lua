@@ -42,6 +42,9 @@ return {
 				diagnostics.pylint.with({
 					extra_args = { "--init-hook", venv_path },
 				}),
+				diagnostics.mypy.with({
+					extra_args = { "--ignore-missing-imports", "--strict", "--explicit-package-bases" },
+				}),
 				diagnostics.revive,
 			},
 		})

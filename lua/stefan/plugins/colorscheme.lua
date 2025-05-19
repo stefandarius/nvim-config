@@ -81,6 +81,20 @@
 -- 					PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
 -- 					PmenuSbar = { bg = theme.ui.bg_m1 },
 -- 					PmenuThumb = { bg = theme.ui.bg_p2 },
+-- 					--
+-- 					NormalFloat = { bg = "none" },
+-- 					FloatBorder = { bg = "none" },
+-- 					FloatTitle = { bg = "none" },
+--
+-- 					-- Save an hlgroup with dark background and dimmed foreground
+-- 					-- so that you can use it where your still want darker windows.
+-- 					-- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+-- 					NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+--
+-- 					-- Popular plugins that open floats will link to NormalFloat by default;
+-- 					-- set their background accordingly if you wish to keep them dark and borderless
+-- 					LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+-- 					MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
 -- 				}
 -- 			end,
 -- 			colors = {
@@ -124,11 +138,13 @@ return {
 	config = function()
 		require("gruvbox").setup({
 			transparent_mode = true,
+			overrides = {
+				-- LineNrAbove = { fg = "#6e6a86" },
+				-- LineNr = { fg = "white" },
+				-- LineNrBelow = { fg = "#6e6a86" },
+			},
 		})
 		vim.cmd("colorscheme gruvbox")
-		vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#6e6a86" })
-		vim.api.nvim_set_hl(0, "LineNr", { fg = "white" })
-		vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#6e6a86" })
 	end,
 	opts = ...,
 }

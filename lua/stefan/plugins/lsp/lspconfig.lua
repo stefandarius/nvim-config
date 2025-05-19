@@ -15,6 +15,7 @@ return {
 			-- set keybinds
 			opts.desc = "Show LSP type definitions"
 			keymap.set("n", "gt", vim.lsp.buf.type_definition, opts) -- show lsp type definitions
+			keymap.set("n", "gi", vim.lsp.buf.implementation, opts) -- show lsp type definitions
 
 			opts.desc = "Show inlay hints"
 			keymap.set("n", "gih", function()
@@ -30,6 +31,19 @@ return {
 				local client = vim.lsp.get_client_by_id(args.data.client_id)
 				local bufnr = args.buf
 				on_attach(client, bufnr)
+
+				if vim.wo.diff then
+					return
+				end
+
+				vim.o.foldmethod = "expr"
+				-- Default to treesitter folding
+				vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+				-- Prefer LSP folding if client supports it
+				if client and client:supports_method("textDocument/foldingRange") then
+					local win = vim.api.nvim_get_current_win()
+					vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
+				end
 			end,
 		})
 		-- Change the Diagnostic symbols in the sign column (gutter)

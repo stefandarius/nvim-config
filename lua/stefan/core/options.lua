@@ -50,7 +50,7 @@ opt.splitbelow = true -- split horizontal window to the bottom
 -- turn off swapfile
 opt.swapfile = false
 
-opt.scrolloff = 8 -- keep 8 lines above and below cursor
+opt.scrolloff = 4 -- keep 8 lines above and below cursor
 
 vim.wo.fillchars = "eob: " -- remove ~ from end of buffer
 
@@ -65,3 +65,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.o.winborder = "rounded"
+
+opt.foldlevelstart = 99 -- disable folding by default
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	pattern = "*",
+	callback = function()
+		vim.api.nvim_set_hl(0, "Statusline", { bg = "NONE" })
+	end,
+})
