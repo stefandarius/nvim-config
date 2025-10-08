@@ -139,9 +139,9 @@ return {
 		require("gruvbox").setup({
 			transparent_mode = true,
 			overrides = {
-				-- LineNrAbove = { fg = "#6e6a86" },
-				-- LineNr = { fg = "white" },
-				-- LineNrBelow = { fg = "#6e6a86" },
+				LineNrAbove = { fg = "#6e6a86" },
+				LineNr = { fg = "white" },
+				LineNrBelow = { fg = "#6e6a86" },
 			},
 		})
 		vim.cmd("colorscheme gruvbox")

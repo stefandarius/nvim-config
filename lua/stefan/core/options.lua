@@ -72,5 +72,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 	pattern = "*",
 	callback = function()
 		vim.api.nvim_set_hl(0, "Statusline", { bg = "NONE" })
+		vim.api.nvim_set_hl(0, "WinBar", { bg = "none" })
+		vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
 	end,
 })

@@ -21,6 +21,8 @@ return {
 		},
 		behaviour = {
 			use_cwd_as_project_root = true,
+			auto_apply_diff_after_generation = false,
+			auto_approve_tool_permissions = false,
 		},
 	},
 	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`

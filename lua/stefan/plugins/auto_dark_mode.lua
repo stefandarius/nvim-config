@@ -16,10 +16,11 @@
 -- }
 -- LINUX
 return {
-	"4e554c4c/darkman.nvim",
-	event = "VimEnter",
-	build = "go build -o bin/darkman.nvim",
-	opts = {
-		-- configuration here
-	},
+	-- "4e554c4c/darkman.nvim",
+	-- event = "VimEnter",
+	-- build = "go build -o bin/darkman.nvim",
+	-- opts = {
+	-- 	-- configuration here
+	-- 	change_background = false,
+	-- },
 }

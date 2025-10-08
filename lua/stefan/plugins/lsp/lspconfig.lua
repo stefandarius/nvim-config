@@ -2,7 +2,7 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 	},
 	config = function()
 		-- import lspconfig plugin
@@ -69,13 +69,13 @@ return {
 			},
 		}
 		vim.diagnostic.config({
-			virtual_text = {
-				prefix = "●",
-				spacing = 1,
-			},
-			virtual_lines = {
-				current_line = true,
-			},
+			-- virtual_text = {
+			-- 	prefix = "●",
+			-- 	spacing = 1,
+			-- },
+			-- virtual_lines = {
+			-- 	current_line = true,
+			-- },
 			signs = signs,
 			underline = true,
 			update_in_insert = false,
@@ -94,5 +94,6 @@ return {
 		vim.lsp.enable("prismals")
 		vim.lsp.enable("pyright")
 		vim.lsp.enable("lua_ls")
+		vim.lsp.enable("hyprls")
 	end,
 }
